@@ -29,6 +29,7 @@ function onSearch(evt) {
   picsApiService.query = evt.currentTarget.elements.query.value;
   clearPicsGallery();
   if (picsApiService.query === '') {
+    loadMoreBtn.hide();
     return alert({
       text: 'Try again :)',
     });
@@ -46,21 +47,22 @@ function fetchPics() {
   picsApiService
     .fetchPics()
     .then(hits => {
-      if (hits.length > 11) {
-        appendPicsMarkup(hits);
-        loadMoreBtn.show();
-        loadMoreBtn.enable();
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth',
-        });
-      } else if (hits.length <= 11 && hits.length > 0) {
-        appendPicsMarkup(hits);
-        loadMoreBtn.hide();
-      } else if (hits.length === 0) {
+      if (hits.length === 0) {
         error('No results were found!');
         loadMoreBtn.hide();
+        return;
       }
+      appendPicsMarkup(hits);
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+      if (hits.length <= 11) {
+          loadMoreBtn.hide();
+      } else {
+        loadMoreBtn.show();
+        loadMoreBtn.enable();
+        }
     })
     .catch(error => console.log(error));
 }

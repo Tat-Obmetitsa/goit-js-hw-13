@@ -22,8 +22,7 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
+  max-width: 1200px;
   align-items: center;
   margin: 30px;
   margin-left: auto;
@@ -36,13 +35,15 @@ body {
   display: flex;
   flex-direction: row;
   max-width: 50%;
+  display: flex;
 }
 .gallery {
   padding: 5px;
   margin-left: auto;
   margin-right: auto;
   font-size: 13px;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .photo-card {
@@ -51,22 +52,31 @@ body {
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 70%;
+  width: 350px;
+  height: 300px;
+  padding: 10px;
+  border: 2px solid #ff0081;
+  border-radius: 5%;
+  box-sizing: border-box;
 }
+.photo-card:hover {
 
+ box-shadow: 2px 6px 8px rgba(0,0,0,0.16), 2px 6px 8px rgba(0,0,0,0.06), 2px 6px 8px rgba(0,0,0,0.12);;
+}
 .stats {
-  position: absolute;
-  
-  right: 70px;
-  bottom: 0;
-
   display: flex;
- 
-
-  color: #fff;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  color: purple;
   opacity: 0.9;
-
   z-index: 2;
+  font-size: 13px;
+  font-weight: 800;
+ 
+}
+p {
+  margin: 0;
 }
 
 .stats-item {
@@ -128,6 +138,9 @@ body {
   cursor: pointer;
   text-align: center;
   background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
 }
 
 .form-control:focus {
